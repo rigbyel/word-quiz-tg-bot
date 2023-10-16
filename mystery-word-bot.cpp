@@ -44,6 +44,18 @@ int main() {
             }
         }
 
+        if (std::tolower(message->text[0]) < 97 | (std::tolower(message->text[0]) > 122))
+        {
+            bot.getApi().sendMessage(message->chat->id, "Используйте латинские буквы.");
+            return;
+        }
+
+        if (message->text.size() > 1)
+        {
+            bot.getApi().sendMessage(message->chat->id, "У вас большие запросы...\nВведите одну букву.");
+            return;
+        }
+
         if (users[message->chat->id].isover()) {
             bot.getApi().sendMessage(message->chat->id, "Вы уже отгадали слово.\nЧтобы начать новую игру, введите /newgame");
             return;
