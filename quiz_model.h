@@ -12,7 +12,7 @@ private:
     std::string key;
     int size;
     int xletters;   // кол-во неизвестных пользователю букв
-    char *current_word = new char[size];
+    std::vector<char> current_word;
 public:
     Word();
     Word(std::string keyword);
@@ -28,11 +28,14 @@ class Game
 {
 private:
     std::vector<std::string> wordlist;
+    bool gameover;
 public:
     Game();
     void start_game();
     bool guess_letter(char letter);
     bool check_success();
+    void end_game();
+    bool isover();
     Word word;
 };
 

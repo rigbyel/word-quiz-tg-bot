@@ -18,13 +18,14 @@ Word::Word(std::string keyword)
     xletters = size;
     for (int i = 0; i < size; i++)
     {
-        current_word[i] = 45;   // 45 соответствует символу "-" в ASCII
+        current_word.push_back('-');   // 45 соответствует символу "-" в ASCII
     }
 }
 
 // проверяет есть ли буква в загаданном слове
 bool Word::check_letter(char letter)
 {
+    letter = std::tolower(letter);   // переводим букву в нижний регистр
     bool guess = false;
     for (int i = 0; i < key.size(); i++)
     {
@@ -44,6 +45,7 @@ std::string Word::get_current()
     std::string arr;
     for (int i=0; i<size; i++) {
         arr.push_back(current_word[i]);
+        arr.push_back(' ');
     }
     return arr;
 }
@@ -74,12 +76,23 @@ void Game::start_game()
 {
     // создаем объект Word с рандомным словом из словаря
     word = Word(wordlist[get_randint(wordlist.size())]);
+    gameover = false;
+}
+
+void Game::end_game()
+{
+    gameover = true;
 }
 
 bool Game::guess_letter(char letter)
 {
     bool guess = word.check_letter(letter);
     return guess;
+}
+
+bool Game::isover()
+{
+    return gameover;
 }
 
 bool Game::check_success()
