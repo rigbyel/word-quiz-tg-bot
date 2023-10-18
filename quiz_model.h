@@ -18,8 +18,9 @@ public:
     Word(std::string keyword);
 
     bool check_letter(char letter);
-    void print_word();
     bool check_success();
+    void print_word();
+    bool open_letter();
     std::string get_current();
 
 };
@@ -36,6 +37,7 @@ public:
     bool check_success();
     void end_game();
     bool isover();
+    bool open_letter();
     Word word;
 };
 

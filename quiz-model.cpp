@@ -57,6 +57,23 @@ bool Word::check_success()
 }
 
 
+bool Word::open_letter()
+{   
+    if (xletters == 0) {
+        return 0;
+    }
+
+    for(int i=0; i<size; i++) {
+        if (current_word[i] == '-')
+        {
+            current_word[i] = key[i];
+            xletters -= 1;
+            return 1;
+        }
+    }
+}
+
+
 Game::Game() {
     // создаем словарь, читая слова из файла "dictionary.txt"
     std::ifstream in("dictionary.txt"); // окрываем файл для чтения
@@ -98,4 +115,9 @@ bool Game::isover()
 bool Game::check_success()
 {
     return word.check_success();
+}
+
+bool Game::open_letter()
+{
+    return word.open_letter();
 }
