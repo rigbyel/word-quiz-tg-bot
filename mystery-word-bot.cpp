@@ -36,7 +36,7 @@ int main() {
 
     bot.getEvents().onCommand("hint", [&](TgBot::Message::Ptr message) {
         if (!(users.count(message->chat->id))){
-            bot.getApi().sendMessage(message->chat->id, "Для начала начните игру\n\n Чтобы это сделать, введите /newgame");
+            bot.getApi().sendMessage(message->chat->id, "Для начала начните игру\n\nЧтобы это сделать, введите /newgame");
             return;
         }
         if (users[message->chat->id].open_letter()) {
@@ -62,6 +62,11 @@ int main() {
             }
         }
 
+        if (users[message->chat->id].isover()) {
+            bot.getApi().sendMessage(message->chat->id, "Вы уже отгадали слово.\nЧтобы начать новую игру, введите /newgame");
+            return;
+        }
+
         if (std::tolower(message->text[0]) < 97 | (std::tolower(message->text[0]) > 122))
         {
             bot.getApi().sendMessage(message->chat->id, "Используйте латинские буквы.");
@@ -71,11 +76,6 @@ int main() {
         if (message->text.size() > 1)
         {
             bot.getApi().sendMessage(message->chat->id, "У вас большие запросы...\nВведите одну букву.");
-            return;
-        }
-
-        if (users[message->chat->id].isover()) {
-            bot.getApi().sendMessage(message->chat->id, "Вы уже отгадали слово.\nЧтобы начать новую игру, введите /newgame");
             return;
         }
 
