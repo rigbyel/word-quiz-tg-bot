@@ -36,13 +36,13 @@ Word Quiz Bot - это Telegram бот, написанный на C++, кото�
 2. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/your_username/WordQuizBot.git
+git clone "https://github.com/rigbyel/word-quiz-tg-bot"
 ```
 
 3. Перейдите в директорию проекта:
 
 ```bash
-cd WordQuizBot
+cd word-quiz-tg-bot
 ```
 
 4. Компилируйте исходный код:
